@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, PenTool, Megaphone, Award, Users, CheckCircle, Upload, UserPlus, Edit3, Printer, Target, Star } from 'lucide-react';
+import ConvertKitForm from '../components/ConvertKitForm';
 
 const LandingPage: React.FC = () => {
   const [emailList, setEmailList] = useState('');
@@ -37,7 +38,7 @@ const LandingPage: React.FC = () => {
           }
           
           // Submit to ConvertKit form endpoint
-          await fetch('https://api.convertkit.com/v3/forms/f7f96add48/subscribe', {
+          await fetch('https://api.convertkit.com/v3/forms/23453ee44b/subscribe', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -494,13 +495,9 @@ const LandingPage: React.FC = () => {
               </div>
               
               {/* ConvertKit Form Container */}
-              <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 border border-white border-opacity-20">
-                <div id="convertkit-form-container">
-                  {/* ConvertKit form will be injected here */}
-                  <div className="text-center">
-                    <p className="text-blue-100 mb-4">Loading signup form...</p>
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto"></div>
-                  </div>
+              <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20">
+                <div className="w-full">
+                  <ConvertKitForm />
                 </div>
               </div>
             </div>

@@ -2,25 +2,23 @@ import React, { useEffect } from 'react';
 
 const ConvertKitForm: React.FC = () => {
   useEffect(() => {
-    // Initialize ConvertKit form when component mounts
-    const initializeConvertKit = () => {
-      // Check if ConvertKit script is loaded
-      if (window.ConvertKit) {
-        // Initialize the form
-        window.ConvertKit.init();
+    // Wait for ConvertKit script to load and initialize
+    const checkConvertKit = () => {
+      if (typeof window !== 'undefined' && (window as any).ConvertKit) {
+        (window as any).ConvertKit.init();
       } else {
-        // Wait for script to load
-        setTimeout(initializeConvertKit, 100);
+        setTimeout(checkConvertKit, 500);
       }
     };
-
-    initializeConvertKit();
+    
+    // Start checking after a short delay to ensure DOM is ready
+    setTimeout(checkConvertKit, 1000);
   }, []);
 
   return (
-    <div className="convertkit-form-container">
+    <div className="convertkit-form-container w-full">
       {/* ConvertKit form will be automatically injected here */}
-      <div data-uid="f7f96add48"></div>
+      <div data-uid="23453ee44b" className="w-full"></div>
     </div>
   );
 };
